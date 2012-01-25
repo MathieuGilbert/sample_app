@@ -5,8 +5,6 @@ gem 'rails', '3.2.0'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-#gem 'sqlite3'
-gem "postgres", "~> 0.7.9.2008.01.28"
 gem 'heroku'
 
 
@@ -25,10 +23,12 @@ end
 gem 'jquery-rails'
 
 group :development do
+  gem 'sqlite3'
   gem 'rspec-rails', '2.8.1'
 end
 
 group :test do
+  gem 'sqlite3'
   gem 'rspec', '2.8.0'
   gem 'webrat', '0.7.3'
   # gem 'spork-rails', '3.2.0'
