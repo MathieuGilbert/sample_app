@@ -1,0 +1,116 @@
+$backColor: #cff;
+$linkColor: #09c;
+
+.container {
+  width: 710px;
+}
+
+body {
+  background: $backColor;
+}
+
+header {
+  padding-top: 20px;
+  
+  img {
+    padding: 1em;
+    background: #fff;
+  }
+}
+
+section {
+  margin-top: 1em;
+  font-size: 120%;
+  padding: 20px;
+  background: #fff;
+  
+  h1 {
+    font-size: 200%;
+  }
+}
+
+/* Links */
+
+a {
+  color: $linkColor;
+  text-decoration: none;
+  
+  &:hover {
+    color: darken($linkColor, 20%);
+    text-decoration: underline;
+  }
+  
+  &:visited {
+    color: darken($linkColor, 20%);
+  }
+}
+
+/* Navigation */
+
+nav {
+  float: right;
+  background-color: #fff;
+  padding: 0 0.7em;
+  white-space: nowrap;
+  
+  ul {
+    margin: 0;
+    padding: 0;
+    
+    li {
+      list-style-type: none;
+      display: inline-block;
+      padding: 0.2em 0;
+      
+      a {
+        padding: 0 5px;
+        font-weight: bold;
+        
+        &:visited {
+          color: $linkColor;
+        }
+        
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}
+
+/* Sign-up button */
+
+a.signup_button {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  text-align: center;
+  width: 190px;
+  color: #fff;
+  background: #006400;
+  font-size: 150%;
+  font-weight: bold;
+  padding: 20px;
+}
+
+/* Round corners */
+
+.round {
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+}
+
+/* Footer */
+
+footer {
+  text-align: center;
+  margin-top: 10px;
+  width: 710px;
+  margin-left: auto;
+  margin-right: auto;
+  
+  nav {
+    float: none;
+  }
+}
