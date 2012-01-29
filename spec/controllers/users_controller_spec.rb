@@ -4,7 +4,7 @@ describe UsersController do
   render_views
   
   before(:each) do
-    @base_title = "Ruby on Rails Tutorial Sample App"
+    @base_title = base_title
   end
 
   describe "GET 'new'" do
@@ -15,8 +15,7 @@ describe UsersController do
     
     it "should have the right title" do
       get 'new'
-      response.should have_selector("title", 
-                                    :content => @base_title + " | Sign Up")
+      response.should have_selector("title", :content => @base_title + " | Sign Up")
     end
     
     it "should have a name field" do
@@ -88,7 +87,7 @@ describe UsersController do
        
        it "should have the right title" do
          post :create, :user => @attr
-         response.should have_selector('title', :content => "Sign Up")
+         response.should have_selector('title', :content => @base_title + " | Sign Up")
        end
        
        it "should render the 'new' page" do
@@ -122,6 +121,11 @@ describe UsersController do
       it "should have a welcome message" do
         post :create, :user => @attr
         flash[:success].should =~ /welcome to the sample app/i
+      end
+      
+      it "should sign the user in" do
+        post :create, :user => @attr
+        controller.should be_signed_in
       end
     end
   end

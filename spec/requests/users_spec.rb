@@ -18,7 +18,6 @@ describe "Users" do
           response.should have_selector("div#error_explanation")
         end.should_not change(User, :count)
       end
-      
     end
     
     describe "success" do
@@ -35,6 +34,26 @@ describe "Users" do
           response.should render_template('users/new')
         end.should change(User, :count).by(1)
       end
+    end
+    
+    describe "sign in/out" do
+      describe "failure" do
+        it "should not sign the user in" do
+          integration_sign_in(User.new)
+          response.should have_selector("div.flash.error", :content => "Invalid")
+        end
+        
+        describe "success" do
+          it "should sign the user in" do
+            user = Factory(:user)
+            integration_sign_in(user)
+            controller.should be_signed_in
+            click_link "Sign Out"
+            controller.should_not be_signed_in
+          end
+        end
+      end
+            
     end
   end
 end
