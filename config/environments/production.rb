@@ -46,7 +46,7 @@ SampleApp::Application.configure do
   # config.action_controller.asset_host = "http://assets.example.com"
 
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
-  # config.assets.precompile += %w( custom.css.scss, pages.css.scss, users.css.scss )
+  config.assets.precompile += %w( custom.css, pages.css, users.css, pages.js, users.js )
 
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
