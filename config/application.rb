@@ -64,5 +64,9 @@ module SampleApp
     
     # Heroku requires false
     config.assets.initialize_on_precompile = false
+    
+    # changed root path
+    config.assets.prefix = "/#{ENV['APP_ROOT_FOLDER']}/assets"
+
   end
 end
