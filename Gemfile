@@ -1,11 +1,14 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.0'
+gem 'heroku'
+gem 'jquery-rails'
+gem 'gravatar_image_tag'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'heroku'
+
 
 
 # Gems used only for assets and not required
@@ -20,7 +23,6 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-gem 'jquery-rails'
 
 group :development do
   gem 'sqlite3'
@@ -31,7 +33,7 @@ group :test do
   gem 'sqlite3'
   gem 'rspec', '2.8.0'
   gem 'webrat', '0.7.3'
-  # gem 'spork-rails', '3.2.0'
+  gem 'factory_girl_rails', '1.6.0'
 end
 
 group :production do
