@@ -38,6 +38,17 @@ describe UsersController do
       response.should have_selector("input[name='user[password_confirmation]'][type='password']")
     end
     
+    describe "for signed-in users" do
+      before(:each) do
+        test_sign_in(Factory(:user))
+      end
+      
+      it "should redirect to root path" do
+        get :new
+        response.should redirect_to(root_path)
+      end
+    end
+    
   end
 
   describe "GET 'show'" do
@@ -126,6 +137,18 @@ describe UsersController do
       it "should sign the user in" do
         post :create, :user => @attr
         controller.should be_signed_in
+      end
+    end
+
+    describe "for signed-in users" do
+      before(:each) do
+        test_sign_in(Factory(:user))
+        @new_user = Factory(:user, :email => "newuser@example.com")
+      end
+      
+      it "should redirect to root path" do
+        post :create, :user => @new_user
+        response.should redirect_to(root_path)
       end
     end
   end
@@ -297,7 +320,27 @@ describe UsersController do
                                            :content => "Next")                                   
       end
       
+      describe "for non-admin users" do
+        it "should not have delete links" do
+          get :index
+          response.should_not have_selector('a', :"data-method" => 'delete', :content => "delete")
+        end
+      end
+      
+      describe "for admin users" do
+        before(:each) do
+          @user.toggle!(:admin)
+        end
+        
+        it "should have delete links" do
+          get :index
+          response.should have_selector('a', :"data-method" => 'delete', :content => "delete")
+        end
+        
+      end
     end
+    
+
   end
 
   describe "DELETE 'destroy'" do
@@ -322,8 +365,8 @@ describe UsersController do
     
     describe "as an admin user" do
       before(:each) do
-        admin = Factory(:user, :email => "admin@example.com", :admin => true)
-        test_sign_in(admin)
+        @admin = Factory(:user, :email => "admin@example.com", :admin => true)
+        test_sign_in(@admin)
       end
       
       it "should destroy the user" do
@@ -336,6 +379,15 @@ describe UsersController do
         delete :destroy, :id => @user
         response.should redirect_to(users_path)
       end
+      
+      describe "trying to delete themselves" do
+        it "should not delete the user" do
+          lambda do
+            delete :destroy, :id => @admin
+          end.should_not change(User, :count)
+        end
+      end
+      
     end
   end
 end
