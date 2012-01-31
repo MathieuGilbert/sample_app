@@ -66,7 +66,7 @@ module SampleApp
     config.assets.initialize_on_precompile = false
     
     # changed root path
-    config.assets.prefix = "/#{ENV['APP_ROOT_FOLDER']}/assets"
+    #config.assets.prefix = "/#{ENV['APP_ROOT_FOLDER']}/assets"
 
   end
 end
