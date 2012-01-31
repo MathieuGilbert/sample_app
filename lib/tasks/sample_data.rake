@@ -1,9 +1,9 @@
-require 'faker'
-
 namespace :db do
   desc "Fill database with sample data"
   # define task db:populate, giving it access to local environment
   task :populate => :environment do
+    require 'faker'
+    
     # reset dev database (and test???)
     Rake::Task['db:reset'].invoke
     # create one sample user
