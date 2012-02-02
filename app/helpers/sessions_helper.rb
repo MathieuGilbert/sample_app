@@ -22,6 +22,10 @@ module SessionsHelper
     session[:remember_token] = nil
     self.current_user = nil
   end
+
+  def authenticate
+    deny_access unless signed_in?
+  end
   
   def deny_access
     store_location
@@ -37,6 +41,7 @@ module SessionsHelper
     user == current_user
   end
   
+    
   private
   
     def user_from_remember_token

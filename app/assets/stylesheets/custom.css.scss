@@ -176,3 +176,59 @@ ul.users {
     list-style: none;
   }
 }
+
+/* microposts */
+
+h1.micropost {
+  margin-bottom: 0.3em;
+}
+
+table.microposts {
+  margin-top: 1em;
+  
+  tr {
+    height: 70px;
+    
+    td {
+      border-top: 1px solid #ccc;
+      vertical-align: top;
+      
+      &.gravatar {
+        width: 50px;
+      }
+      &.micropost {
+        padding-top: 10px;
+        
+        span.timestamp {
+          display: block;
+          font-size: 85%;
+          color: #666;
+        }
+      }
+    }
+  }
+}
+
+div.user_info {
+  img {
+    padding-right: 0.1em;
+  }
+  a {
+    text-decoration: none;
+  }
+  span.user_name {
+    position: absolute;
+  }
+  span.microposts {
+    font-size: 80%;
+  }
+}
+
+form.new_micropost {
+  margin-bottom: 2em;
+  
+  textarea {
+    height: 4em;
+    margin-bottom: 0;
+  }
+}
