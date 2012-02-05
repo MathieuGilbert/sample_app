@@ -16,7 +16,8 @@ SampleApp::Application.routes.draw do
   match '/signup'  => 'users#new'
   match '/signin'  => 'sessions#new'
   match '/signout' => 'sessions#destroy'
-    
+  
+  match '/users/:id/microposts' => 'microposts#index'
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

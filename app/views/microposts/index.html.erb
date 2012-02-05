@@ -1,0 +1,8 @@
+<% provide(:title, "Microposts by " + current_user.name )%>
+
+<% unless @microposts.empty? %>
+  <ul class='microposts' summary="User microposts">
+    <%= render @microposts %>
+  </ul>
+  <%= will_paginate @microposts %>  
+<% end %>
