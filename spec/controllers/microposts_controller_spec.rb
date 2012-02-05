@@ -81,13 +81,13 @@ describe MicropostsController do
         @micropost = Factory(:micropost, :user => @user)
       end
       
-      it "shold destroy the micropost" do
+      it "should destroy the micropost" do
         lambda do
           delete :destroy, :id => @micropost
         end.should change(Micropost, :count).by(-1)
       end
     end
-
-
   end
+  
+  
 end

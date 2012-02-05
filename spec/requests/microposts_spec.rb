@@ -29,7 +29,7 @@ describe "Microposts" do
           visit root_path
           fill_in :micropost_content, :with => content
           click_button
-          response.should have_selector("span.content", :content => content)
+          response.should have_selector("div.content", :content => content)
         end.should change(Micropost, :count).by(1)
       end
     end

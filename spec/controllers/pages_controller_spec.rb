@@ -18,6 +18,30 @@ describe PagesController do
       response.should have_selector("title", 
                                     :content => @base_title + " | Home")
     end
+    
+    describe "for logged-in users" do
+      before(:each) do
+        @user = test_sign_in(Factory(:user))
+      end
+      
+      describe "with many microposts" do
+        before(:each) do
+          50.times do
+            Factory(:micropost, :user => @user,
+                                :content => "test")
+          end
+        end
+        
+        it "should paginage" do
+          get :home
+          response.should have_selector('div.pagination')
+          response.should have_selector('span.disabled', :content => "Previous")
+          response.should have_selector('a', :href => '/?page=2')
+          response.should have_selector('a', :href => "/?page=2",
+                                             :content => "Next")    
+        end
+      end
+    end
   end
 
   describe "GET 'contact'" do
