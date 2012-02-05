@@ -89,6 +89,23 @@ describe UsersController do
       response.should have_selector("div.content", :content => mp1.content)
       response.should have_selector("div.content", :content => mp2.content)
     end
+    
+    it "should not show 'delete' link for other user's posts" do
+      test_sign_in(@user)
+      other_user = Factory(:user, :email => "other@example.com")
+      mp = Factory(:micropost, :user => other_user, :content => "i am not you")
+      
+      get :show, :id => other_user
+      response.should_not have_selector('a', :content => "delete")
+    end
+    
+    it "should show 'delete' link for own posts" do
+      test_sign_in(@user)
+      mp = Factory(:micropost, :user => @user, :content => "i am you")
+      
+      get :show, :id => @user
+      response.should have_selector('a', :content => "delete")
+    end
   end
   
   describe "POST 'create'" do
