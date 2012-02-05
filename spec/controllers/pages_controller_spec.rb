@@ -58,4 +58,30 @@ describe PagesController do
                                     :content => @base_title + " | Help")
     end
   end
+  
+  describe "sidebar" do
+    before(:each) do
+      @user = test_sign_in(Factory(:user, :email => Factory.next(:email)))
+    end
+    
+    it "should show microposts" do
+      get :home
+      response.should have_selector('span', :class => 'microposts')
+    end
+    
+    it "should say '1 micropost'" do
+      mp1 = Factory(:micropost, :user => @user)
+      get :home
+      response.should have_selector('span', :class => 'microposts',
+                                            :content => "1 micropost")
+    end
+    
+    it "should say '2 microposts'" do
+      mp1 = Factory(:micropost, :user => @user)        
+      mp2 = Factory(:micropost, :user => @user)
+      get :home
+      response.should have_selector('span', :class => 'microposts',
+                                            :content => "2 microposts")
+    end
+  end
 end

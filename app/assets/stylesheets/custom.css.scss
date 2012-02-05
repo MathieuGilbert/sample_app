@@ -209,6 +209,39 @@ table.microposts {
   }
 }
 
+ul.microposts {
+  list-style: none;
+  
+  li {
+    overflow: auto;
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    
+    div.gravatar {
+      float: left;
+      position: relative;
+      border: solid 0px black;
+    }
+    
+    div.micropost {
+      float: left;
+      position: relative;
+      border: solid 0px black;
+      width: 75%;
+      
+      div.content {
+        font-weight: bold;
+      }
+    }
+    div.delete {
+      float: right;
+      position: relative;
+    }
+  }
+}
+
+
 div.user_info {
   img {
     padding-right: 0.1em;
