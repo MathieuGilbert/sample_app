@@ -22,6 +22,8 @@ describe PagesController do
     describe "for logged-in users" do
       before(:each) do
         @user = test_sign_in(Factory(:user))
+        other_user = Factory(:user, :email => Factory.next(:email))
+        other_user.follow!(@user)
       end
       
       describe "with many microposts" do
@@ -41,7 +43,17 @@ describe PagesController do
                                              :content => "Next")    
         end
       end
+      
+      it "should have the right follower/following counts" do
+        get :home
+        response.should have_selector('a', :href => following_user_path(@user),
+                                           :content => "0 following")
+        response.should have_selector('a', :href => followers_user_path(@user),
+                                           :content => "1 follower")
+      end
     end
+    
+
   end
 
   describe "GET 'contact'" do
