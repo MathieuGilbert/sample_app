@@ -44,9 +44,9 @@ describe Micropost do
       @other_user = Factory(:user, :email => Factory.next(:email))
       @third_user = Factory(:user, :email => Factory.next(:email))
       
-      @user_post = @user.micropost.create!(:content => "foo")
-      @other_post = @other_user.micropost.create!(:content => "bar")
-      @third_post = @third_user.micropost.create!(:content => "baz")
+      @user_post = @user.microposts.create!(:content => "foo")
+      @other_post = @other_user.microposts.create!(:content => "bar")
+      @third_post = @third_user.microposts.create!(:content => "baz")
       
       @user.follow!(@other_user)
     end
